@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import TodoList from './components/todo-list'
-import AppHeader from './components/app-header'
+import AppHeader from './components/app-header/app-header'
 import SearchPanel from './components/search-panel'
 import ItemStatusFilter from "./components/item-status-filter";
 
