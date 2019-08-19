@@ -4,6 +4,7 @@ import TodoList from '../todo-list'
 import AppHeader from '../app-header'
 import SearchPanel from '../search-panel'
 import ItemStatusFilter from '../item-status-filter';
+import AddItem from '../add-item';
 
 import './app.css';
 //
@@ -14,6 +15,8 @@ import './app.css';
 // ];
 
 export default class App extends Component {
+	
+	maxId = 100;
 	
 	state = {
 		todoData: [
@@ -37,7 +40,24 @@ export default class App extends Component {
 			return {
 				todoData: newArray
 			}
-		})
+		});
+	};
+	
+	addedItem = (text) => {
+		const newItem = {
+			label: text,
+			important: false,
+			id: this.maxId++
+		};
+		
+		this.setState(({ todoData }) => {
+			const newArray = [...todoData, newItem];
+			
+			return {
+				todoData: newArray
+			}
+			
+		});
 	};
 	
 	render() {
@@ -52,6 +72,10 @@ export default class App extends Component {
 				<TodoList
 					todos={ this.state.todoData }
 					onDeleted={ this.deleteItem }
+				/>
+				
+				<AddItem
+					onAddItem={ this.addedItem }
 				/>
 			</div>
 		);
